@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اپ حرکات بدنسازی</title>
+
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+<style>
+@font-face {
+    font-family: 'BNazanin';
+    src: url('https://cdn.fontcdn.ir/Font/Persian/BNazanin/BNazanin-Bold.ttf');
+}
+
+/* Reset & Base */
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    background:linear-gradient(135deg,#0f0f0f,#2c2c2c);
+    color:#fff;
+    font-family:'Vazirmatn','BNazanin',sans-serif;
+    direction:rtl;
+}
+
+/* Header */
+header{
+    background:linear-gradient(90deg,#b31217,#e52d27);
+    padding:18px;
+    text-align:center;
+}
+header h1{
+    font-family:'BNazanin';
+    margin:8px 0 0;
+}
+.fav-btn{
+  font-size:20px;
+  cursor:pointer;
+  float:left;
+  transition:.3s;
+}
+.fav-btn.active{
+  color:#ff5252;
+  transform:scale(1.2);
+}
+
+
+/* Muscles */
+.muscle-container{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    padding:20px;
+}
+.muscle-box{
+    background:#1e1e1e;
+    border-radius:16px;
+    padding:12px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+.muscle-box:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 18px #e52d27;
+}
+.muscle-box img{
+    width:85px;
+    height:85px;
+    object-fit:contain;
+}
+.muscle-box p{
+    font-family:'BNazanin';
+    margin-top:8px;
+}
+
+/* Exercise Section */
+.exercise-container{
+    display:flex;
+    gap:25px;
+    padding:20px;
+    justify-content:center;
+    align-items:flex-start;
+}
+#muscleImage{
+    width:380px;
+    height:220px;
+    object-fit:cover;
+    border-radius:18px;
+    box-shadow:0 0 20px #000;
+}
+
+/* Exercise List */
+#exerciseList{
+    background:#1b1b1b;
+    border-radius:16px;
+    padding:18px;
+    width:360px;
+    max-height:520px;
+    overflow-y:auto;
+}
+.search-box{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-bottom:15px;
+}
+.exercise-item{
+    background:#262626;
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+.exercise-item:hover{background:#e52d27}
+.exercise-item img{
+    width:100%;
+    border-radius:10px;
+    margin-top:8px;
+}
+
+/* Level */
+.badge{
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:13px;
+}
+.beginner{background:#2ecc71}
+.medium{background:#f1c40f;color:#000}
+.advanced{background:#e74c3c}
+
+/* Calories */
+.calorie-bar{
+    background:#444;
+    height:8px;
+    border-radius:10px;
+    overflow:hidden;
+}
+.low{background:#2ecc71;height:100%}
+.mid{background:#f1c40f;height:100%}
+.high{background:#e74c3c}
+
+/* Detail */
+#exerciseDetail{
+    background:#1b1b1b;
+    margin:30px auto;
+    padding:22px;
+    border-radius:16px;
+    max-width:700px;
+}
+#exerciseDetail h2{
+    font-family:'BNazanin';
+    color:#ff5252;
+}
+/* Header */
+.main-header{
+ background:linear-gradient(135deg,#b31217,#e52d27);
+ padding:20px;
+ border-bottom-left-radius:25px;
+ border-bottom-right-radius:25px;
+ box-shadow:0 10px 30px rgba(0,0,0,.5);
+ position:relative;
+ overflow:hidden;
+}
+
+.main-header::after{
+ content:"";
+ position:absolute;
+ top:-50%;
+ right:-30%;
+ width:300px;
+ height:300px;
+ background:rgba(255,255,255,.08);
+ border-radius:50%;
+}
+
+.header-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ font-size:22px;
+ font-weight:bold;
+}
+
+.logo span{
+ margin-right:6px;
+}
+
+.widgets{
+ display:flex;
+ gap:12px;
+}
+
+.widget{
+ background:rgba(0,0,0,.25);
+ padding:6px 12px;
+ border-radius:20px;
+ font-size:14px;
+}
+
+.header-content{
+ text-align:center;
+ margin-top:15px;
+}
+
+.header-content h1{
+ margin:0;
+ font-size:26px;
+}
+
+.header-content p{
+ margin-top:6px;
+ opacity:.9;
+}
+#smartPlan{
+ background:#1b1b1b;
+ margin:25px;
+ padding:20px;
+ border-radius:20px;
+ text-align:center;
+}
+#smartPlan h2{
+ margin-bottom:15px;
+ color:#ff5252;
+}
+#smartPlan select, #smartPlan button{
+ padding:10px;
+ margin:6px;
+ border-radius:10px;
+ border:none;
+ width:160px;
+}
+#smartPlan button{
+ background:#e52d27;
+ color:#fff;
+ cursor:pointer;
+}
+.plan-day{
+ background:#262626;
+ margin-top:15px;
+ padding:12px;
+ border-radius:12px;
+ text-align:right;
+}
+.plan-day h3{
+ margin:0 0 8px;
+ color:#f1c40f;
+}
+#dashboard{
+ background:#1b1b1b;
+ margin:25px;
+ padding:20px;
+ border-radius:20px;
+ text-align:center;
+}
+#dashboard h2{
+ color:#2ecc71;
+ margin-bottom:15px;
+}
+
+.dash-cards{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+ margin-bottom:20px;
+}
+.dash-card{
+ background:#262626;
+ padding:15px;
+ border-radius:15px;
+ font-size:14px;
+}
+.dash-card span{
+ font-size:22px;
+ font-weight:bold;
+ display:block;
+ margin-top:5px;
+ color:#f1c40f;
+}
+
+#badges h3{
+ margin-bottom:10px;
+}
+.badge-list{
+ display:flex;
+ gap:10px;
+ justify-content:center;
+ flex-wrap:wrap;
+}
+.badge{
+ background:#e52d27;
+ padding:8px 12px;
+ border-radius:20px;
+ font-size:13px;
+}
+#timerSection{
+ background:#1b1b1b;
+ margin:25px;
+ padding:20px;
+ border-radius:20px;
+ text-align:center;
+}
+#timerSection h2{
+ color:#2ecc71;
+ margin-bottom:15px;
+}
+#timerDisplay{
+ font-size:40px;
+ font-weight:bold;
+ margin:15px 0;
+ color:#f1c40f;
+}
+#timerSection button{
+ background:#e52d27;
+ color:#fff;
+ border:none;
+ padding:10px 20px;
+ margin:5px;
+ border-radius:12px;
+ cursor:pointer;
+}
+#timerStatus{
+ margin-top:10px;
+ font-size:14px;
+}
+/* تم پیش‌فرض (شب) */
+body.dark{
+  background: linear-gradient(135deg,#0f0f0f,#2c2c2c);
+  color: #fff;
+}
+header.dark{
+  background: linear-gradient(90deg,#b31217,#e52d27);
+}
+
+/* تم روشن */
+body.light{
+  background: linear-gradient(135deg,#f5f5f5,#ddd);
+  color: #000;
+}
+header.light{
+  background: linear-gradient(90deg,#ff7f50,#ffa07a);
+}
+
+/* دکمه */
+#themeToggle{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  background: #e52d27;
+  color: #fff;
+}
+
+
+
+/* Mobile */
+@media(max-width:600px){
+ .header-content h1{font-size:22px}
+ .logo{font-size:18px}
+}
+
+
+/* Responsive */
+@media (max-width:600px){
+    .muscle-container{grid-template-columns:repeat(2,1fr);}
+    .exercise-container{flex-direction:column;align-items:center;}
+    #muscleImage{width:95%;height:200px;}
+    #exerciseList{width:95%;}
+}
+@media (min-width:601px) and (max-width:1024px){
+    .muscle-container{grid-template-columns:repeat(3,1fr);}
+    #muscleImage{width:320px;height:200px;}
+}
+@media (min-width:1400px){
+    body{max-width:1400px;margin:auto;}
+}
+</style>
+</head>
+
+<body>
+<header class="main-header">
+  <div class="header-top">
+    <div class="logo">
+      💪 <span>Fitness App</span>
+    </div>
+
+    <div class="widgets">
+      <div class="widget">
+        ❤️ <span id="favCount">0</span>
+      </div>
+      <div class="widget">
+        🕒 <span id="clock">00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-content">
+    <h1>اپ حرکات بدنسازی</h1>
+    <p>بدن قوی، ذهن قوی‌تر 💥</p>
+  </div>
+</header>
+<section id="smartPlan">
+  <h2>🧠 برنامه تمرینی هوشمند</h2>
+
+  <select id="goal">
+    <option value="muscle">💪 عضله‌سازی</option>
+    <option value="fat">🔥 چربی‌سوزی</option>
+    <option value="fit">⚖️ تناسب اندام</option>
+  </select>
+
+  <select id="level">
+    <option value="beginner">مبتدی</option>
+    <option value="medium">متوسط</option>
+    <option value="advanced">حرفه‌ای</option>
+  </select>
+
+  <select id="days">
+    <option value="3">۳ روز در هفته</option>
+    <option value="4">۴ روز در هفته</option>
+    <option value="5">۵ روز در هفته</option>
+  </select>
+
+  <button onclick="generatePlan()">ساخت برنامه</button>
+
+  <div id="planResult"></div>
+</section>
+<section id="timerSection">
+  <h2>⏱️ تایمر تمرین</h2>
+  <div id="timerDisplay">00:00</div>
+  <button id="startTimerBtn">شروع تمرین</button>
+  <button id="pauseTimerBtn">توقف</button>
+  <button id="resetTimerBtn">بازنشانی</button>
+  <p id="timerStatus">وضعیت: آماده</p>
+</section>
+
+<section id="dashboard">
+  <h2>📊 داشبورد پیشرفت</h2>
+
+  <div class="dash-cards">
+    <div class="dash-card">🔥 استریک<br><span id="streak">0</span> روز</div>
+    <div class="dash-card">✅ تمرین‌ها<br><span id="workouts">0</span></div>
+    <div class="dash-card">📅 آخرین تمرین<br><span id="lastDay">—</span></div>
+  </div>
+
+  <div id="badges">
+    <h3>🏆 مدال‌ها</h3>
+    <div class="badge-list" id="badgeList">هنوز مدالی نگرفتی 💪</div>
+  </div>
+</section>
+
+
+<div class="muscle-container">
+<div class="muscle-box" onclick="showExercises('chest','assets/chest.png')"><img src="assets/chest.png"><p>سینه</p></div>
+<div class="muscle-box" onclick="showExercises('bicep','assets/arms.png')"><img src="assets/arms.png"><p>جلو بازو</p></div>
+<div class="muscle-box" onclick="showExercises('tricep','assets/Poshtbazoo.png')"><img src="assets/Poshtbazoo.png"><p>پشت بازو</p></div>
+<div class="muscle-box" onclick="showExercises('shoulder','assets/sarshane.png')"><img src="assets/sarshane.png"><p>سرشانه</p></div>
+<div class="muscle-box" onclick="showExercises('abs','assets/abs.png')"><img src="assets/abs.png"><p>شکم</p></div>
+<div class="muscle-box" onclick="showExercises('quadriceps','assets/legs.png')"><img src="assets/legs.png"><p>ران</p></div>
+<div class="muscle-box" onclick="showExercises('calf','assets/sagh.png')"><img src="assets/sagh.png"><p>ساق</p></div>
+<div class="muscle-box" onclick="showExercises('back','assets/Back.png')"><img src="assets/Back.png"><p>پشت</p></div>
+</div>
+
+<div class="exercise-container">
+<img id="muscleImage" src="assets/chest.png">
+<div id="exerciseList">
+<input class="search-box" id="searchInput" placeholder="🔍 جستجوی حرکت..." onkeyup="filterExercises()">
+<div id="exercises">یک عضله انتخاب کنید</div>
+</div>
+</div>
+
+<div id="exerciseDetail">
+<h2>توضیحات حرکت</h2>
+<p>روی یک حرکت کلیک کنید.</p>
+</div>
+
+<button id="themeToggle">🌗 تغییر تم</button>
+
+<script>
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+function toggleFav(name,el){
+  if(favorites.includes(name)){
+    favorites = favorites.filter(f=>f!==name);
+    el.classList.remove("active");
+  }else{
+    favorites.push(name);
+    el.classList.add("active");
+  }
+  localStorage.setItem("favorites",JSON.stringify(favorites));
+}
+
+const exercisesData={
+chest:[
+{name:"پرس سینه با هالتر",media:"harkat/press-sine-halter-2.gif",detail:"روی نیمکت دراز بکشید، هالتر را با دستان کمی بازتر از شانه بگیرید و به آرامی پایین بیاورید سپس به بالا فشار دهید. مناسب برای تقویت عضله سینه.",level:"beginner",calories:120},
+{name:"پوش آپ",media:"harkat/pushup.gif",detail:"روی زمین دست‌ها را کمی بیشتر از شانه باز کنید، بدن صاف باشد، با خم کردن آرنج‌ها بدن را پایین بیاورید و دوباره بالا ببرید.",level:"medium",calories:90},
+{name:"فلای با دمبل",media:"harkat/fly.gif",detail:"روی نیمکت بخوابید، دمبل‌ها را بالای سینه نگه دارید، با کمی خم کردن آرنج‌ها بازوها را به طرفین باز کنید و دوباره جمع کنید.",level:"advanced",calories:160}
+],
+bicep:[
+{name:"جلو بازو با دمبل",media:"harkat/bicep_dumbbell.gif",detail:"دمبل‌ها را در دست‌ها نگه دارید، بازوها را به آرامی خم کنید تا دمبل‌ها نزدیک شانه شوند و سپس پایین ببرید.",level:"beginner",calories:70},
+{name:"جلو بازو با هالتر",media:"harkat/bicep_barbell.gif",detail:"هالتر را با دو دست بگیرید، به آرامی بالا ببرید و پایین بیاورید.",level:"medium",calories:90},
+{name:"چکش با دمبل",media:"harkat/hammer_curl.gif",detail:"دمبل‌ها را طوری بگیرید که کف دست‌ها رو به هم باشند، بازو را خم کرده و دمبل را بالا ببرید.",level:"advanced",calories:110}
+],
+tricep:[
+{name:"پشت بازو سیم کش",media:"harkat/tricep_cable.gif",detail:"با دستگیره سیم کش، بازو را صاف نگه داشته و دسته را پایین فشار دهید.",level:"beginner",calories:80},
+{name:"دیپ",media:"harkat/dip.gif",detail:"روی پارالل یا صندلی قرار بگیرید، با خم کردن آرنج‌ها بدن را پایین بیاورید و دوباره بالا بروید.",level:"medium",calories:90},
+{name:"پشت بازو دمبل تک دست",media:"harkat/tricep_dumbbell.gif",detail:"دمبل را در یک دست نگه دارید، بازو را به آرامی پشت سر خم کنید و دوباره بالا بیاورید.",level:"advanced",calories:110}
+],
+shoulder:[
+{name:"نشر جانبی",media:"harkat/side_raise.gif",detail:"دمبل‌ها را کنار بدن نگه دارید، بازوها را به طرفین بالا بیاورید و دوباره پایین بیاورید.",level:"beginner",calories:60},
+{name:"پرس سرشانه",media:"harkat/shoulder_press.gif",detail:"دمبل یا هالتر را روی شانه‌ها نگه دارید و به آرامی بالای سر فشار دهید.",level:"medium",calories:100},
+{name:"نشر جلو با دمبل",media:"harkat/front_raise.gif",detail:"دمبل‌ها را جلوی بدن نگه دارید و بازوها را مستقیم به جلو بالا بیاورید و پایین بیاورید.",level:"advanced",calories:120}
+],
+abs:[
+{name:"کرانچ",media:"harkat/crunch.gif",detail:"روی زمین دراز بکشید، زانوها خم، با خم کردن شکم بالا بیایید و دوباره پایین بروید.",level:"beginner",calories:50},
+{name:"پلنک",media:"harkat/plank.gif",detail:"روی ساعد و پنجه پا قرار بگیرید، بدن صاف باشد و تا حد توان نگه دارید.",level:"medium",calories:80},
+{name:"لیفت پا",media:"harkat/leg_raise.gif",detail:"روی زمین دراز بکشید و پاها را صاف به آرامی بالا بیاورید و پایین ببرید.",level:"advanced",calories:90}
+],
+quadriceps:[
+{name:"اسکوات",media:"harkat/squat.gif",detail:"پاها به اندازه شانه باز، با خم کردن زانوها پایین بروید و دوباره بالا بیایید.",level:"beginner",calories:100},
+{name:"لانج",media:"harkat/lunge.gif",detail:"یک پا جلو، پا دیگر عقب، زانوها را خم کنید و دوباره صاف شوید.",level:"medium",calories:120},
+{name:"پرس پا",media:"harkat/leg_press.gif",detail:"روی دستگاه پرس پا بنشینید، پاها را روی صفحه فشار دهید و به آرامی پایین بیاورید.",level:"advanced",calories:160}
+],
+calf:[
+{name:"کالف با دستگاه",media:"harkat/calf_raise.gif",detail:"روی دستگاه کالف قرار بگیرید، پاشنه را بالا بیاورید و پایین ببرید.",level:"beginner",calories:50},
+{name:"کالف با دمبل",media:"harkat/calf_dumbbell.gif",detail:"دمبل‌ها در دست، پاشنه را بالا بیاورید و پایین بیاورید.",level:"medium",calories:70}
+],
+back:[
+{name:"زیر بغل هالتر",media:"harkat/back_barbell.gif",detail:"هالتر را با دو دست بگیرید، خم شوید و به آرامی هالتر را به سمت شکم بکشید.",level:"beginner",calories:100},
+{name:"زیربغل دمبل تک دست",media:"harkat/back_dumbbell.gif",detail:"دمبل را در یک دست، خم شوید و دمبل را به سمت شکم بکشید.",level:"medium",calories:120},
+{name:"ددلیفت",media:"harkat/deadlift.gif",detail:"هالتر را از زمین بردارید، کمر صاف، پاها کمی خم، و دوباره پایین بیاورید.",level:"advanced",calories:200}
+]
+};
+
+let currentExercises=[];
+
+function showExercises(muscle,img){
+document.getElementById("muscleImage").src=img;
+currentExercises=exercisesData[muscle];
+renderExercises(currentExercises);
+}
+
+function renderExercises(list){
+const box=document.getElementById("exercises");
+box.innerHTML="";
+list.forEach(ex=>{
+const color=ex.calories<=80?"low":ex.calories<=150?"mid":"high";
+box.innerHTML+=`
+<div class="exercise-item" onclick="showDetail('${ex.name}','${ex.media}','${ex.detail}')">
+<strong>${ex.name}</strong><br>
+<span class="badge ${ex.level}">
+${ex.level==="beginner"?"مبتدی":ex.level==="medium"?"متوسط":"حرفه‌ای"}
+</span>
+<div>
+<small>${ex.calories} کالری / ۱۰ دقیقه</small>
+<div class="calorie-bar"><div class="${color}" style="width:${ex.calories/2}%"></div></div>
+</div>
+<img src="${ex.media}">
+</div>`;
+});
+}
+
+function showDetail(name,media,detail){
+document.getElementById("exerciseDetail").innerHTML=
+`<h2>${name}</h2><img src="${media}" style="width:100%;border-radius:12px"><p>${detail}</p>`;
+}
+
+function filterExercises(){
+const v=document.getElementById("searchInput").value;
+renderExercises(currentExercises.filter(e=>e.name.includes(v)));
+}
+
+/* Clock */
+function updateClock(){
+ const now = new Date();
+ const h = String(now.getHours()).padStart(2,"0");
+ const m = String(now.getMinutes()).padStart(2,"0");
+ document.getElementById("clock").innerText = `${h}:${m}`;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+/* Favorite Counter */
+function updateFavCount(){
+ document.getElementById("favCount").innerText = favorites.length;
+}
+updateFavCount();
+
+/* بعد از toggleFav اینو صدا بزن */
+const oldToggle = toggleFav;
+toggleFav = function(name,el){
+ oldToggle(name,el);
+ updateFavCount();
+}
+function generatePlan(){
+ const goal = document.getElementById("goal").value;
+ const level = document.getElementById("level").value;
+ const days = Number(document.getElementById("days").value);
+
+ const split = {
+  3: ["سینه + جلو بازو","پا","پشت + شکم"],
+  4: ["سینه","پشت","پا","سرشانه + بازو"],
+  5: ["سینه","پشت","پا","سرشانه","بازو + شکم"]
+ };
+
+ const muscleMap = {
+  "سینه":["chest"],
+  "پشت":["back"],
+  "پا":["quadriceps","calf"],
+  "سرشانه":["shoulder"],
+  "بازو":["bicep","tricep"],
+  "شکم":["abs"],
+  "سینه + جلو بازو":["chest","bicep"],
+  "پشت + شکم":["back","abs"],
+  "سرشانه + بازو":["shoulder","bicep","tricep"],
+  "بازو + شکم":["bicep","tricep","abs"]
+ };
+
+ let html = "";
+
+ split[days].forEach((day,i)=>{
+  html += `<div class="plan-day"><h3>روز ${i+1}: ${day}</h3><ul>`;
+
+  muscleMap[day].forEach(m=>{
+    if(exercisesData[m]){
+      exercisesData[m]
+       .filter(e=>e.level===level)
+       .slice(0, goal==="fat"?3:2)
+       .forEach(ex=>{
+         html += `<li>${ex.name}</li>`;
+       });
+    }
+  });
+
+  html += "</ul></div>";
+ });
+
+ document.getElementById("planResult").innerHTML = html;
+}
+
+let progress = JSON.parse(localStorage.getItem("progress")) || {
+ workouts: 0,
+ streak: 0,
+ lastDate: null,
+ badges: []
+};
+
+function completeWorkout(){
+ const today = new Date().toDateString();
+
+ if(progress.lastDate === today) return;
+
+ const yesterday = new Date();
+ yesterday.setDate(yesterday.getDate()-1);
+
+ if(progress.lastDate === yesterday.toDateString()){
+   progress.streak++;
+ }else{
+   progress.streak = 1;
+ }
+
+ progress.workouts++;
+ progress.lastDate = today;
+
+ checkBadges();
+ saveProgress();
+ renderDashboard();
+ alert("💪 تمرین امروز ثبت شد، عالی بود!");
+}
+
+function checkBadges(){
+ const rules = [
+  {name:"شروع قوی",cond:()=>progress.workouts>=1},
+  {name:"۳ تمرین",cond:()=>progress.workouts>=3},
+  {name:"۷ روز استریک",cond:()=>progress.streak>=7},
+  {name:"۱۰ تمرین",cond:()=>progress.workouts>=10}
+ ];
+
+ rules.forEach(r=>{
+  if(r.cond() && !progress.badges.includes(r.name)){
+    progress.badges.push(r.name);
+  }
+ });
+}
+
+function saveProgress(){
+ localStorage.setItem("progress",JSON.stringify(progress));
+}
+
+function renderDashboard(){
+ document.getElementById("streak").innerText = progress.streak;
+ document.getElementById("workouts").innerText = progress.workouts;
+ document.getElementById("lastDay").innerText =
+   progress.lastDate ? progress.lastDate.split(" ").slice(0,3).join(" ") : "—";
+
+ const badgeBox = document.getElementById("badgeList");
+ if(progress.badges.length===0){
+   badgeBox.innerText="هنوز مدالی نگرفتی 💪";
+ }else{
+   badgeBox.innerHTML = progress.badges.map(b=>`<div class="badge">🏆 ${b}</div>`).join("");
+ }
+}
+
+renderDashboard();
+
+let timer;
+let timeLeft = 0; // ثانیه
+let isRest = false;
+let timerRunning = false;
+
+const timerDisplay = document.getElementById("timerDisplay");
+const timerStatus = document.getElementById("timerStatus");
+
+function formatTime(t){
+ let min = Math.floor(t/60).toString().padStart(2,'0');
+ let sec = (t%60).toString().padStart(2,'0');
+ return `${min}:${sec}`;
+}
+
+function startTimer(){
+ if(timerRunning) return;
+
+ if(timeLeft === 0){
+   timeLeft = isRest ? 30 : 60; // استراحت ۳۰ ثانیه، تمرین ۶۰ ثانیه
+   timerStatus.innerText = isRest ? "وضعیت: استراحت" : "وضعیت: تمرین";
+ }
+
+ timerRunning = true;
+ timer = setInterval(()=>{
+   timeLeft--;
+   timerDisplay.innerText = formatTime(timeLeft);
+
+   if(timeLeft<=0){
+     clearInterval(timer);
+     timerRunning = false;
+     isRest = !isRest; // بعد از تمرین استراحت و بالعکس
+     alert(isRest ? "⏳ زمان استراحت شروع شد!" : "💪 زمان تمرین شروع شد!");
+     startTimer(); // خودکار شروع می‌کنه
+   }
+ },1000);
+}
+
+function pauseTimer(){
+ clearInterval(timer);
+ timerRunning = false;
+}
+
+function resetTimer(){
+ clearInterval(timer);
+ timerRunning = false;
+ timeLeft = 0;
+ timerDisplay.innerText = "00:00";
+ timerStatus.innerText = "وضعیت: آماده";
+ isRest = false;
+}
+
+// دکمه‌ها
+document.getElementById("startTimerBtn").addEventListener("click", startTimer);
+document.getElementById("pauseTimerBtn").addEventListener("click", pauseTimer);
+document.getElementById("resetTimerBtn").addEventListener("click", resetTimer);
+
+function requestNotificationPermission() {
+  if (!("Notification" in window)) {
+    alert("مرورگر شما از نوتیفیکیشن پشتیبانی نمی‌کند.");
+    return;
+  }
+  Notification.requestPermission().then(permission => {
+    if(permission === "granted") {
+      alert("✅ اعلان‌ها فعال شدند");
+    } else {
+      alert("❌ اجازه اعلان داده نشد");
+    }
+  });
+}
+
+// فراخوانی هنگام لود صفحه
+requestNotificationPermission();
+
+function sendWorkoutNotification(){
+  if(Notification.permission === "granted"){
+    const notification = new Notification("💪 وقت تمرینه!", {
+      body: "وقت تمرین امروز رسیده. شروع کن و استریک خودتو ادامه بده!",
+      icon: "assets/chest.png" // آیکون دلخواه
+    });
+
+    // کلیک روی نوتیفیکیشن → باز کردن اپ
+    notification.onclick = () => window.focus();
+  }
+}
+
+function scheduleDailyNotification(hour=18, minute=0){
+  const now = new Date();
+  const notificationTime = new Date();
+  notificationTime.setHours(hour);
+  notificationTime.setMinutes(minute);
+  notificationTime.setSeconds(0);
+
+  let delay = notificationTime - now;
+  if(delay < 0) delay += 24*60*60*1000; // فردا
+
+  setTimeout(function notifyAndReschedule(){
+    sendWorkoutNotification();
+    // دوباره برای روز بعد زمان‌بندی کن
+    setTimeout(notifyAndReschedule, 24*60*60*1000);
+  }, delay);
+}
+
+// فراخوانی هنگام لود صفحه
+scheduleDailyNotification();
+
+// بررسی تم ذخیره شده در localStorage
+let currentTheme = localStorage.getItem("theme") || "dark";
+document.body.classList.add(currentTheme);
+document.querySelector("header").classList.add(currentTheme);
+
+// تغییر تم با دکمه
+document.getElementById("themeToggle").addEventListener("click", ()=>{
+  if(document.body.classList.contains("dark")){
+    document.body.classList.replace("dark","light");
+    document.querySelector("header").classList.replace("dark","light");
+    localStorage.setItem("theme","light");
+  } else {
+    document.body.classList.replace("light","dark");
+    document.querySelector("header").classList.replace("light","dark");
+    localStorage.setItem("theme","dark");
+  }
+});
+
+</script>
+
+</body>
+</html>
